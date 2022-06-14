@@ -2,7 +2,7 @@
   "name": "autenticacion",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://Angel1174.github.io/autenticacion-dsos",
+  "homepage": "http://Angel1174.github.io/",
   "dependencies": {
     "@emailjs/browser": "^3.6.2",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
