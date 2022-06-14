@@ -15,13 +15,13 @@ function App() {
   return (
     <Router>
             <Routes>
-            <Route exact path="/usuarios" element={<Principal/>}>
+            <Route exact path="/autenticacion-dsos/usuarios" element={<Principal/>}>
               </Route>
-              <Route exact path="/validar" element={<Validar/>}>
+              <Route exact path="/autenticacion-dsos/validar" element={<Validar/>}>
               </Route>
-              <Route exact path="/recuperar" element={<Recuperar/>}>
+              <Route exact path="/autenticacion-dsos/recuperar" element={<Recuperar/>}>
               </Route>
-              <Route exact path="/registrar" element={<EnviarEmail/>}>
+              <Route exact path="/autenticacion-dsos/registrar" element={<EnviarEmail/>}>
               </Route>
               <Route exact path="/autenticacion-dsos" element={<Login/>}>
               </Route>

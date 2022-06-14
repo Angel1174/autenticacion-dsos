@@ -33,7 +33,7 @@ class Principal extends Component {
     //console.log(this.state.form);
   }
   registrarUser=()=>{
-    window.location.href = "./usuarios/registrar";
+    window.location.href = "./registrar";
   }
 
   modalInsertar2 = () => {

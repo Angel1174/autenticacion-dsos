@@ -25,7 +25,7 @@ export const EnviarEmail = () => {
             resp.json().then((result) => {
                 console.warn("result", result)
                 alert("Usuario registrado con éxito, verifica tu correo ");
-                window.location.href = "./usuarios/registrar";
+                window.location.href = "./registrar";
             })
         })
     }
