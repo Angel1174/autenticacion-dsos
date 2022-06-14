@@ -5,7 +5,8 @@ import Login from './views/Login';
 import Recuperar from './views/Recuperar';
 import { EnviarEmail } from './views/EnviarEmail';
 import {
-  HashRouter as Router,
+  //HashRouter as Router,
+  BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
