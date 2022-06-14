@@ -11,13 +11,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
     <App />
   </React.StrictMode>
 );*/
-ReactDOM.render(
+root.render(
   <React.StrictMode>
     <HashRouter>
       <App></App>
     </HashRouter>
   </React.StrictMode>,
-  document.getElementById('root')
+  //document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
