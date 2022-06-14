@@ -23,7 +23,7 @@ function App() {
               </Route>
               <Route exact path="/registrar" element={<EnviarEmail/>}>
               </Route>
-              <Route exact path="/" element={<Login/>}>
+              <Route exact path="/autenticacion-dsos" element={<Login/>}>
               </Route>
               
             </Routes>
