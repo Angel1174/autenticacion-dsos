@@ -28,7 +28,7 @@ class Login extends React.Component {
     }
 
     iniciarSesion = async () => {
-        axios.post("https://servicio-autenticacion.herokuapp.com/login/auth", this.state.form)
+        axios.post("hhttps://servicio-autenticacion.herokuapp.com/login/auth", this.state.form)
             .then(response => {
                 if (response.data.mesage === "Ok") {
                     alert("Bienvenido ");

@@ -72,7 +72,7 @@ class Principal extends Component {
     })
   }
   removeUsuario = (id) => {
-    fetch("https://servicio-autenticacion.herokuapp.com/login/admin/" + id, {
+    fetch("https://autenticacion-d.herokuapp.com/login/admin" + id, {
       method: 'DELETE'
     })
       .then(res => res.json())

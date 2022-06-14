@@ -13,7 +13,6 @@ export const NavbarComponent = (props = {}) => {
                     <div className="navbar-nav">
                         <a className="nav-item nav-link" href="./usuarios">Usuarios <span className="sr-only">(current)</span></a>
                         <a className="nav-item nav-link" href="./registrar">Registro</a>
-                        <a className="nav-item nav-link" href="./validar">Validar Token</a>
                         <a className="nav-item nav-link" href="./">Salir</a>
                     </div>
                 </div>

@@ -14,6 +14,7 @@ export const EnviarEmail = () => {
     function saveData() {
         let data = { nombre, username, email, password, estado }
         fetch("https://servicio-autenticacion.herokuapp.com/login/register", {
+            
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -21,11 +22,8 @@ export const EnviarEmail = () => {
             },
             body: JSON.stringify(data)
         }).then((resp) => {
-            // console.warn("resp",resp);;
             resp.json().then((result) => {
                 console.warn("result", result)
-                alert("Usuario registrado con éxito, verifica tu correo ");
-                window.location.href = "./registrar";
             })
         })
     }
@@ -48,7 +46,7 @@ export const EnviarEmail = () => {
                         <div className="fadeIn first">
                             <h4 className='h4'>Registro de usuario</h4>
                             <br></br>
-                            <input className="fadeIn second" placeholder='Nombre' type="text" name="nombre" value={nombre} onChange={(e) => { setName(e.target.value) }} />
+                            <input className="fadeIn second" placeholder='Nombre' type="text" name="nombre" required value={nombre} onChange={(e) => { setName(e.target.value) }} />
                             <br />
                             <input className="fadeIn second" placeholder='Usuario' type="text" name="username" id="alias" required value={username} onChange={(e) => { setUserName(e.target.value) }} />
                             <br />

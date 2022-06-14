@@ -43,7 +43,6 @@ class Recuperar extends Component {
     }
     metodoDelete = (id) => {
           this.peticionPut(id);
-          window.alert('Contraseña actualizada con éxito');
           window.location.href = "./";
       }
       manejadorSubmit(e) {
@@ -63,16 +62,16 @@ class Recuperar extends Component {
                         <br></br>
                         <form onClick={this.manejadorSubmit}>
                             
-                            <input type="text" className="fadeIn second" name="id" placeholder="ID de usuario" onChange={this.handleChange} value={form.id}/>
-                            <input type="text" className="fadeIn second" name="nombre" placeholder="Nombre" onChange={this.handleChange}  value={form.nombre}/>
-                            <input type="text" className="fadeIn second" name="username" placeholder="Nuevo Usuario"  onChange={this.handleChange} value={form.username}/>
-                            <input type="text" className="fadeIn second" name="email" placeholder="Nuevo correo" onChange={this.handleChange}  value={form.email}/>
-                            <input type="password" className="fadeIn third" name="password" placeholder="Nueva contraseña" onChange={this.handleChange} value={form.password} />
-                            <input type="text" className="fadeIn second" name="estado" placeholder="Status" onChange={this.handleChange}  value={form.estado}/>
+                            <input type="text" className="fadeIn second" name="id" placeholder="ID de usuario"  onChange={this.handleChange} required value={form.id}/>
+                            <input type="text" className="fadeIn second" name="nombre" placeholder="Nombre"onChange={this.handleChange}  required value={form.nombre}/>
+                            <input type="text" className="fadeIn second" name="username" placeholder="Nuevo Usuario"  onChange={this.handleChange} required value={form.username}/>
+                            <input type="text" className="fadeIn second" name="email" placeholder="Nuevo correo" onChange={this.handleChange}  required value={form.email}/>
+                            <input type="password" className="fadeIn third" name="password" placeholder="Nueva contraseña" onChange={this.handleChange} required  value={form.password} />
+                            <input type="text" className="fadeIn second" name="estado" placeholder="Status" onChange={this.handleChange}  required value={form.estado}/>
                             
                             <br></br>
                             <br></br>
-                            <input type="submit" className="fadeIn fourth" value="Actualizar datos"  onClick={() => this.metodoDelete(form.id)} />
+                            <input type="submit"  value="Actualizar datos"  onClick={() => this.metodoDelete(form.id)} />
                         </form>
                     </div>
                 </div>
