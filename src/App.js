@@ -4,7 +4,6 @@ import Principal from './views/Principal';
 import Login from './views/Login';
 import Recuperar from './views/Recuperar';
 import { EnviarEmail } from './views/EnviarEmail';
-import { Login2 } from './views/Login2';
 import {
   //HashRouter as Router,
   //BrowserRouter as Router,

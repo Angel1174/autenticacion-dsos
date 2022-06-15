@@ -129,7 +129,7 @@ class Principal extends Component {
                       <td align="center">{usuario.password}</td>
                       <td>
                         <button type="button" className="btn btn-success" onClick={() => { this.seleccionarUsuario(usuario); this.modalInsertar2() }}><FontAwesomeIcon icon={faEdit}></FontAwesomeIcon></button>
-                        &nbsp;&nbsp;&nbsp;
+                       
                         <button type="button" className="btn btn-danger" onClick={() => this.metodoDelete(usuario.id)} ><FontAwesomeIcon icon={faTrashAlt} /></button>
                       </td>
                     </tr>
