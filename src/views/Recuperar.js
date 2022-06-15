@@ -46,7 +46,9 @@ class Recuperar extends Component {
         var resultado = window.confirm('¿Estás seguro que tus datos son correctos?');
         if (resultado === true) {
           this.peticionPut(id);
+          window.location.href =("/")
         } else {
+            window.location.href =("/registrar")
             return 0;
           }
       
@@ -77,7 +79,7 @@ class Recuperar extends Component {
                             
                             <br></br>
                             <br></br>
-                            <Link to={"/"}><input type="submit"  value="Actualizar datos"  onClick={() => this.metodoDelete(form.id)} /></Link>
+                            <input type="submit"  value="Actualizar datos"  onClick={() => this.metodoDelete(form.id)} />
                         </form>
                     </div>
                 </div>
