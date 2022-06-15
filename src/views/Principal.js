@@ -100,7 +100,7 @@ class Principal extends Component {
         <div className="App" >
           <br />
           <center>
-            <Link to={"/registrar"}><button className='btn btn-primary' onClick={() => { this.registrarUser() }}>Registrar nuevo usuario </button></Link>
+            <Link to={"/registrar"}><button className='btn btn-primary'>Registrar nuevo usuario </button></Link>
           </center>
           <br /><br />
           <center>
