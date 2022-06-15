@@ -3,8 +3,7 @@ import '../css/Login.css';
 import user2 from '../components/img/user2.png';
 import axios from "axios";
 import { NavbarLogin } from "../components/NavbarLogin";
-import {Link} from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 class Login extends React.Component {
 
     state = {
@@ -12,12 +11,12 @@ class Login extends React.Component {
             "usernameOrEmail": "",
             "password": ""
         },
-        error: false,
+        error: true,
         errorMSsg: ""
     }
 
     manejadorSubmit(e) {
-        
+
         e.preventDefault();
     }
 
@@ -30,15 +29,16 @@ class Login extends React.Component {
         });
         //console.log(this.state.form);
     }
-    
+
     iniciarSesion = async () => {
         //let navigate = useNavigate();
         axios.post("https://servicio-autenticacion.herokuapp.com/login/auth", this.state.form)
             .then(response => {
                 if (response.data.mesage === "Ok") {
-                    alert("Bienvenido ");
-                    
-                   // window.location.href = "/servicio-autenticacion/#/usuarios";
+                    this.setState({
+                        error: false 
+                    })
+                    //window.location.href = "/servicio-autenticacion/#/usuarios";
                 } else {
                     this.setState({
                         error: true,
@@ -72,7 +72,7 @@ class Login extends React.Component {
                             <input type="password" className="fadeIn third" name="password" placeholder="Contraseña" onChange={this.handleChange} />
                             <br></br>
                             <br></br>
-                            <Link to={"/usuarios"}><button className='btn btn-primary'  onClick={() => this.iniciarSesion()}>Iniciar sesión</button></Link>
+                            <button className='btn btn-primary' onClick={() => this.iniciarSesion()}>Iniciar sesión</button>
                         </form>
                         <Link className="nav-link" to={"/recuperar"}><span className="material-icons">
                             ¿Necesitas actualizar datos?, click aquí
@@ -80,6 +80,13 @@ class Login extends React.Component {
                         {this.state.error === true &&
                             <div className="alert alert-danger" role="alert">
                                 {this.state.errorMSsg}
+                            </div>
+                        }
+                        {this.state.error === false &&
+                            <div className="alert alert-success" role="alert">
+                                <Link className="nav-link" to={"/usuarios"}><span className="material-icons">
+                                    Datos correctos, click aquí para continuar
+                                </span></Link>
                             </div>
                         }
                     </div>
