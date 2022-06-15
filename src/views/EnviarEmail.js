@@ -57,7 +57,7 @@ export const EnviarEmail = () => {
                             <br />
                             <input className="fadeIn second" placeholder='Status' type="text" name="estado" id="status" required={estado} onChange={(e) => { setEstado(e.target.value) }} /><br></br>
                         </div>
-                        <Link to={"/registrar"}><input type="submit" onClick={saveData} value="Registrar" /></Link>
+                        <Link to={"/usuarios"}><input type="submit" onClick={saveData} value="Registrar" /></Link>
                     </div>
                 </div>
             </form>

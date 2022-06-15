@@ -1,8 +1,9 @@
 import '../css/App.css'
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Component } from 'react';
+import { Component,useHistory } from 'react';
 import '../css/Login.css';
+import {Link} from 'react-router-dom';
 import { NavbarLogin } from '../components/NavbarLogin';
 
 
@@ -21,7 +22,7 @@ class Recuperar extends Component {
         error: false,
         errorMSsg: ""
     }
-
+    
     handleChange = async e => {
         e.persist();
         await this.setState({
@@ -42,6 +43,16 @@ class Recuperar extends Component {
                 })
             })
     }
+    metodoRecuperar = (id) => {
+        var resultado = window.confirm('¿Estás seguro que tus datos son correctos?');
+        if (resultado === true) {
+          this.peticionPut(id);
+          window.alert('Usuario editado');
+        } else {
+          return 0;
+        }
+    
+      }
       manejadorSubmit(e) {
         e.preventDefault();
     }
@@ -67,7 +78,7 @@ class Recuperar extends Component {
                             <input type="text" className="fadeIn second" name="estado" placeholder="Status" onChange={this.handleChange}  required value={form.estado}/> 
                             <br></br>
                             <br></br>
-                            <input type="submit"  value="Actualizar datos"  onClick={() => this.peticionPut(form.id)} />
+                            <Link to={"/recuperar"}><input type="submit"  value="Actualizar datos"  onClick={() => this.metodoRecuperar(form.id) } /></Link>
                         </form>
                     </div>
                 </div>

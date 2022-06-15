@@ -3,7 +3,8 @@ import '../css/Login.css';
 import user2 from '../components/img/user2.png';
 import axios from "axios";
 import { NavbarLogin } from "../components/NavbarLogin";
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 class Login extends React.Component {
 
     state = {
@@ -16,6 +17,7 @@ class Login extends React.Component {
     }
 
     manejadorSubmit(e) {
+        
         e.preventDefault();
     }
 
@@ -28,12 +30,14 @@ class Login extends React.Component {
         });
         //console.log(this.state.form);
     }
-
+    
     iniciarSesion = async () => {
+        //let navigate = useNavigate();
         axios.post("https://servicio-autenticacion.herokuapp.com/login/auth", this.state.form)
             .then(response => {
                 if (response.data.mesage === "Ok") {
                     alert("Bienvenido ");
+                    
                    // window.location.href = "/servicio-autenticacion/#/usuarios";
                 } else {
                     this.setState({
@@ -68,7 +72,7 @@ class Login extends React.Component {
                             <input type="password" className="fadeIn third" name="password" placeholder="Contraseña" onChange={this.handleChange} />
                             <br></br>
                             <br></br>
-                            <button className='btn btn-primary'  onClick={() => this.iniciarSesion()}>Iniciar sesión</button>
+                            <Link to={"/usuarios"}><button className='btn btn-primary'  onClick={() => this.iniciarSesion()}>Iniciar sesión</button></Link>
                         </form>
                         <Link className="nav-link" to={"/recuperar"}><span className="material-icons">
                             ¿Necesitas actualizar datos?, click aquí
