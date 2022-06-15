@@ -72,7 +72,7 @@ class Login extends React.Component {
                             <input type="password" className="fadeIn third" name="password" placeholder="Contraseña" onChange={this.handleChange} />
                             <br></br>
                             <br></br>
-                            <input type="submit" value="Actualizar datos" onClick={() => this.iniciarSesion()} />
+                            <input type="submit" value="Iniciar sesión" onClick={() => this.iniciarSesion()} />
                         </form>
                         <Link className="nav-link" to={"/recuperar"}><span className="material-icons">
                             ¿Necesitas actualizar datos?, click aquí
