@@ -6,6 +6,7 @@ import { Component } from 'react';
 import { NavbarComponent } from '../components/NavbarComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import {Link} from 'react-router-dom'
 
 class Principal extends Component {
   state = {
@@ -32,10 +33,6 @@ class Principal extends Component {
     });
     //console.log(this.state.form);
   }
-  registrarUser=()=>{
-    window.location.href = "./registrar";
-  }
-
   modalInsertar2 = () => {
     this.setState({ modalInsertar2: !this.state.modalInsertar2 });
   }
@@ -103,7 +100,7 @@ class Principal extends Component {
         <div className="App" >
           <br />
           <center>
-            <button className='btn btn-primary' onClick={() => { this.registrarUser() }}>Registrar nuevo usuario </button>
+            <Link to={"/registrar"}><button className='btn btn-primary' onClick={() => { this.registrarUser() }}>Registrar nuevo usuario </button></Link>
           </center>
           <br /><br />
           <center>

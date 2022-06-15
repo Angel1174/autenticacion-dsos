@@ -2,6 +2,7 @@ import '../css/App.css'
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Component } from 'react';
+import {Link} from 'react-router-dom';
 import '../css/Login.css';
 
 
@@ -42,8 +43,13 @@ class Recuperar extends Component {
             })
     }
     metodoDelete = (id) => {
+        var resultado = window.confirm('¿Estás seguro que tus datos son correctos?');
+        if (resultado === true) {
           this.peticionPut(id);
-          window.location.href = "./";
+        } else {
+            return 0;
+          }
+      
       }
       manejadorSubmit(e) {
         e.preventDefault();
@@ -71,7 +77,7 @@ class Recuperar extends Component {
                             
                             <br></br>
                             <br></br>
-                            <input type="submit"  value="Actualizar datos"  onClick={() => this.metodoDelete(form.id)} />
+                            <Link to={"/"}><input type="submit"  value="Actualizar datos"  onClick={() => this.metodoDelete(form.id)} /></Link>
                         </form>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 import '../css/App.css';
 import React, { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser';
+import {Link} from 'react-router-dom';
 import '../css/Login.css';
 import { NavbarComponent } from '../components/NavbarComponent';
 
@@ -56,7 +57,7 @@ export const EnviarEmail = () => {
                             <br />
                             <input className="fadeIn second" placeholder='Status' type="text" name="estado" id="status" required={estado} onChange={(e) => { setEstado(e.target.value) }} /><br></br>
                         </div>
-                        <input type="submit" onClick={saveData} value="Registrar" />
+                        <Link to={"/registrar"}><input type="submit" onClick={saveData} value="Registrar" /></Link>
                     </div>
                 </div>
             </form>

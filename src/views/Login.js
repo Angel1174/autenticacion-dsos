@@ -2,6 +2,7 @@ import React from "react";
 import '../css/Login.css';
 import user2 from '../components/img/user2.png';
 import axios from "axios";
+import {Link} from 'react-router-dom'
 class Login extends React.Component {
 
     state = {
@@ -28,11 +29,11 @@ class Login extends React.Component {
     }
 
     iniciarSesion = async () => {
-        axios.post("hhttps://servicio-autenticacion.herokuapp.com/login/auth", this.state.form)
+        axios.post("https://servicio-autenticacion.herokuapp.com/login/auth", this.state.form)
             .then(response => {
                 if (response.data.mesage === "Ok") {
                     alert("Bienvenido ");
-                    window.location.href = "./usuarios";
+                   // window.location.href = "/servicio-autenticacion/#/usuarios";
                 } else {
                     this.setState({
                         error: true,
@@ -65,11 +66,11 @@ class Login extends React.Component {
                             <input type="password" className="fadeIn third" name="password" placeholder="Contraseña" onChange={this.handleChange} />
                             <br></br>
                             <br></br>
-                            <input type="submit" className="fadeIn fourth" value="Iniciar sesión" onClick={() => this.iniciarSesion()} />
+                            <Link className="nav-link" to={"/usuarios"}><button className='btn btn-primary'  onClick={() => this.iniciarSesion()}>Iniciar sesion</button></Link>
                         </form>
-                        <a className="nav-link" href="./recuperar"><span className="material-icons">
+                        <Link className="nav-link" to={"/recuperar"}><span className="material-icons">
                             ¿Necesitas actualizar datos?, click aquí
-                        </span></a>
+                        </span></Link>
                         {this.state.error === true &&
                             <div className="alert alert-danger" role="alert">
                                 {this.state.errorMSsg}
