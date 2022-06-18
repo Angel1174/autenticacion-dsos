@@ -1,12 +1,12 @@
 import '../css/App.css';
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 import { Component } from 'react';
 import { NavbarComponent } from '../components/NavbarComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import {Link} from 'react-router-dom'
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 class Principal extends Component {
   state = {
@@ -38,7 +38,7 @@ class Principal extends Component {
   }
 
   peticionGet = () => {
-    axios.get("https://servicio-autenticacion.herokuapp.com/login/admin/").then(
+    axios.get("https://autenticacion-t.herokuapp.com/login/admin/").then(
       response => {
         this.setState({ data: response.data.data });
       }).catch(error => {
@@ -47,14 +47,15 @@ class Principal extends Component {
   }
 
   peticionPut = () => {
-    axios.put("https://servicio-autenticacion.herokuapp.com/login/admin/" + this.state.form.id, this.state.form)
-    .then(response => {
-
-      this.modalInsertar2();
-      window.alert('Usuario editado con éxito');
-      this.peticionGet();
+    fetch('https://autenticacion-t.herokuapp.com/login/admin/' + this.state.form.id, {
+      method: 'PUT',
+      body: this.state.form
     })
+      .then(response => response.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => console.log('Success:', response))
   }
+
   seleccionarUsuario = (usuario) => {
     this.setState({
       tipoModal: 'actualizar',
@@ -63,29 +64,31 @@ class Principal extends Component {
         nombre: usuario.nombre,
         username: usuario.username,
         email: usuario.email,
-        estado: usuario.estado,
-        password: usuario.password
+        estado: usuario.estado
       }
     })
   }
-  removeUsuario = (id) => {
-    fetch("https://autenticacion-d.herokuapp.com/login/admin" + id, {
-      method: 'DELETE'
-    })
-      .then(res => res.json())
-
-  }
-  metodoDelete = (id) => {
-    var resultado = window.confirm('¿Estás seguro de eliminar el usuario?');
-    if (resultado === true) {
-      this.removeUsuario(id);
-      window.alert('Usuario eliminado correctamente');
-      this.peticionGet();
-    } else {
-      return 0;
+  /*
+    removeUsuario = (id) => {
+      fetch("https://autenticacion-d.herokuapp.com/login/admin" + id, {
+        method: 'DELETE'
+      })
+        .then(res => res.json())
+   
     }
-
-  }
+    
+    metodoDelete = (id) => {
+      var resultado = window.confirm('¿Estás seguro de eliminar el usuario?');
+      if (resultado === true) {
+        this.removeUsuario(id);
+        window.alert('Usuario eliminado correctamente');
+        this.peticionGet();
+      } else {
+        return 0;
+      }
+      
+    }
+    */
   //Ciclo de vida
   componentDidMount() {
     this.peticionGet();
@@ -98,75 +101,57 @@ class Principal extends Component {
       <div>
         <NavbarComponent></NavbarComponent>
         <div className="App" >
-          <br />
           <center>
-            <Link to={"/registrar"}><button className='btn btn-primary'>Registrar nuevo usuario </button></Link>
-          </center>
-          <br /><br />
-          <center>
+            <Link to={"/registrar"}><input type="submit" value="Registrar nuevo usuario" /></Link>
             <div className='table-responsive'>
-            <table className="table-hover table-dark" >
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Usuario</th>
-                  <th scope="col">Correo</th>
-                  <th scope="col">Estado</th>
-                  <th scope="col">Contraseña</th>
-                  <th scope="col">Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.data.map(usuario => {
-                  return (
-                    <tr className="bg-primary">
-                      <td align="center">{usuario.id}</td>
-                      <td align="center">{usuario.nombre}</td>
-                      <td align="center">{usuario.username}</td>
-                      <td align="center">{usuario.email}</td>
-                      <td align="center">{usuario.estado}</td>
-                      <td align="center">{usuario.password}</td>
-                      <td>
-                        <button type="button" className="btn btn-success" onClick={() => { this.seleccionarUsuario(usuario); this.modalInsertar2() }}><FontAwesomeIcon icon={faEdit}></FontAwesomeIcon></button>
-                       
-                        <button type="button" className="btn btn-danger" onClick={() => this.metodoDelete(usuario.id)} ><FontAwesomeIcon icon={faTrashAlt} /></button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+              <table className="table-hover table-dark" >
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.data.map(usuario => {
+                    return (
+                      <tr className="bg-primary">
+                        <td align="center">{usuario.id}</td>
+                        <td align="center">{usuario.nombre}</td>
+                        <td align="center">{usuario.username}</td>
+                        <td align="center">{usuario.email}</td>
+                        <td align="center">{usuario.estado}</td>
+                        <td>
+                          <div className="btn-group btn-group-justified">
+                            <button type="button" className="btn btn-success" onClick={() => { this.seleccionarUsuario(usuario); this.modalInsertar2() }}><FontAwesomeIcon icon={faEdit}></FontAwesomeIcon></button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
           </center>
           {
+
           }
           <Modal isOpen={this.state.modalInsertar2}>
             <ModalHeader>
               Actualización de Usuario
             </ModalHeader>
             <ModalBody>
-              <div className="form-group">
-                <input className="form-control" placeholder='Nombre' type="text" name="nombre" id="nombre" required onChange={this.handleChange} value={form ? form.nombre : ''} />
-                <br />
-                <input className="form-control" placeholder='Usuario' type="text" name="username" id="alias" onChange={this.handleChange} value={form ? form.username : ''} />
-                <br />
-                <input className="form-control" placeholder='Correo' type="text" name="email" id="email" disabled onChange={this.handleChange} value={form ? form.email : ''} />
-                <br />
-                <input className="form-control" placeholder='Contraseña' type="password" name="password" id="password" disabled onChange={this.handleChange} value={form ? form.password : ''} />
-                <br />
-                <input className="form-control" placeholder='Status' type="status" name="estado" id="status" onChange={this.handleChange} value={form.estado} />
-
-              </div>
+              <input className="form-control" placeholder='Nombre' type="text" name="nombre" id="nombre" required onChange={this.handleChange} value={form ? form.nombre : ''} />
+              <input className="form-control" placeholder='Usuario' type="text" name="username" id="alias" onChange={this.handleChange} value={form ? form.username : ''} />
+              <input className="form-control" placeholder='Correo' type="text" name="email" id="email" disabled onChange={this.handleChange} value={form ? form.email : ''} />
+              <input className="form-control" placeholder='Status' type="status" name="estado" id="status" onChange={this.handleChange} value={form.estado} />
+              <br></br>
+              <button type="button" className="btn btn-outline-primary" onClick={() => this.peticionPut()}>Aplicar</button>&nbsp;&nbsp;&nbsp;
+              <button type="button" className="btn btn-outline-danger" onClick={() => this.modalInsertar2()}>Cancelar</button>
             </ModalBody>
-
-            <ModalFooter>
-              <button className="btn btn-primary" onClick={() => this.peticionPut()}>
-                Actualizar
-              </button>
-              &nbsp;&nbsp;&nbsp;
-              <button className="btn btn-danger" onClick={() => this.modalInsertar2()}>Cancelar</button>
-            </ModalFooter>
           </Modal>
         </div>
       </div>

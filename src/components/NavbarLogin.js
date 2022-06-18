@@ -11,7 +11,6 @@ export const NavbarLogin = (props = {}) => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
-                        <Link className="nav-item nav-link" to={"/recuperar"}>Actualización<span className="sr-only">(current)</span></Link>
                         <Link className="nav-item nav-link" to={"/"}>Login</Link>
                     </div>
                 </div>

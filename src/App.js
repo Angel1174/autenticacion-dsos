@@ -2,18 +2,9 @@ import './css/App.css';
 import React from 'react';
 import Principal from './views/Principal';
 import Login from './views/Login';
-import Recuperar from './views/Recuperar';
-import { EnviarEmail } from './views/EnviarEmail';
-import {
-  //HashRouter as Router,
-  //BrowserRouter as Router,
-  HashRouter,
-  Routes,
-  Route,
-  //BrowserRouter,
-} from "react-router-dom";
-
-
+import {HashRouter, Routes,Route} from "react-router-dom";
+import RegisterForm from './views/RegisterForm';
+import PeticionEmail from './views/PeticionEmail';
 function App() {
   return (
     <div>
@@ -21,9 +12,9 @@ function App() {
         <Routes>
           <Route path="/usuarios" element={<Principal />}>
           </Route>
-          <Route path="/recuperar" element={<Recuperar />}>
+          <Route  path="/registrar" element={<RegisterForm/>}>
           </Route>
-          <Route  path="/registrar" element={<EnviarEmail />}>
+          <Route  path="/password" element={<PeticionEmail />}>
           </Route>
           <Route exact path="/" element={<Login />}>
           </Route>
