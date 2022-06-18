@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/autenticacion-dsos/static/css/main.14ce29de.css",
-    "main.js": "/autenticacion-dsos/static/js/main.3cda2244.js",
+    "main.css": "/autenticacion-dsos/static/css/main.96f17110.css",
+    "main.js": "/autenticacion-dsos/static/js/main.02226a05.js",
     "static/js/787.338f08ff.chunk.js": "/autenticacion-dsos/static/js/787.338f08ff.chunk.js",
     "static/media/user2.png": "/autenticacion-dsos/static/media/user2.35aba674b734ec5d8119.png",
+    "static/media/formu.png": "/autenticacion-dsos/static/media/formu.c01c60f2c5a745fecf97.png",
     "index.html": "/autenticacion-dsos/index.html",
-    "main.14ce29de.css.map": "/autenticacion-dsos/static/css/main.14ce29de.css.map",
-    "main.3cda2244.js.map": "/autenticacion-dsos/static/js/main.3cda2244.js.map",
+    "main.96f17110.css.map": "/autenticacion-dsos/static/css/main.96f17110.css.map",
+    "main.02226a05.js.map": "/autenticacion-dsos/static/js/main.02226a05.js.map",
     "787.338f08ff.chunk.js.map": "/autenticacion-dsos/static/js/787.338f08ff.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.14ce29de.css",
-    "static/js/main.3cda2244.js"
+    "static/css/main.96f17110.css",
+    "static/js/main.02226a05.js"
   ]
 }
