@@ -6,6 +6,7 @@ import Loader from '../components/Loader';
 import formu from '../components/img/formu.png';
 import Message from '../components/Message';
 const initialFom = {
+    id: "",
     nombre:"",
     username:"",
     email:"",
@@ -22,6 +23,9 @@ const validationsForm = (form) => {
     let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/; //Letras minusculas, vacias, espacios en blanco, acentos
     let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/; //correo electronico valido
     let regexPassword = /^.{4,14}$/; //de 4 a 14 caracteres
+    if(!form.id.trim()){
+        errors.id="El campo ID es requerido";
+    }
     if(!form.nombre.trim()){
         errors.nombre="El campo nombre es requerido";
     }else if(!regexName.test(form.nombre.trim())){
@@ -57,7 +61,7 @@ let styles={
     fontWeight:"bold",
     color:"#dc3545"
 }
-const RegisterForm = () => {
+const UpdateForm = () => {
 
     const {
         form,
@@ -66,14 +70,16 @@ const RegisterForm = () => {
         response,
         handleChange,
         handleBlur,
-        handleSubmit,
+        handleSubmitUpdate,
     } = useForm(initialFom, validationsForm);
     return (
         <div><NavbarComponent></NavbarComponent>
             <div className="wrapper fadeInDown">
                 <div id="formContent">
                     <img src={formu} alt="" width="100px" />
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmitUpdate}>
+                        <input type="text" name="id" placeholder="Ingrese su ID" onBlur={handleBlur} onChange={handleChange} value={form.id} required></input>
+                        {errors.id && <p style={styles}>{errors.id}</p>}
                         <input type="text" name="nombre" placeholder="Ingrese su nombre" onBlur={handleBlur} onChange={handleChange} value={form.nombre} required></input>
                         {errors.nombre && <p style={styles}>{errors.nombre}</p>}
                         <input type="text" name="username" placeholder="Ingrese su usuario" onBlur={handleBlur} onChange={handleChange} value={form.username} required></input>
@@ -84,15 +90,15 @@ const RegisterForm = () => {
                         {errors.password && <p style={styles}>{errors.password}</p>}
                         <input type="text" name="estado" placeholder="Status" onBlur={handleBlur} onChange={handleChange} value={form.estado} required></input>
                         {errors.estado && <p style={styles}>{errors.estado}</p>}
-                        <input type="submit" value="Registrar usuario"></input>
+                        <input type="submit" value="Editar usuario"></input>
                     </form>
                     {loading && <Loader/>}
                     {response && (
-                        <Message msg="Usuario registrado correctamente, verifica tu correo electrónico" bgColor="#198754"></Message>
+                        <Message msg="Usuario editado correctamente, verifica tu correo electrónico" bgColor="#198754"></Message>
                     )}
                 </div>
             </div>
         </div>
     );
 };
-export default RegisterForm;
+export default UpdateForm;

@@ -1,11 +1,14 @@
 import React from "react";
 import '../css/Login.css';
 import user2 from '../components/img/user2.png';
-import axios from "axios";
 import { NavbarLogin } from "../components/NavbarLogin";
 import { Link } from 'react-router-dom';
 class Login extends React.Component {
-
+    /**
+     * Inicializamos las variables a utilizar
+     * usernameOrEmail: indica un correo o usuario
+     * password: indica la contraseña
+     */
     state = {
         form: {
             "usernameOrEmail": "",
@@ -18,7 +21,10 @@ class Login extends React.Component {
     manejadorSubmit(e) {
         e.preventDefault();
     }
-
+    /**
+     * 
+     * @param {Capturamos lo que se escribe en los campos del formulario} e 
+     */
     handleChange = async e => {
         await this.setState({
             form: {
@@ -28,7 +34,11 @@ class Login extends React.Component {
         });
     }
     
-    
+    /**
+     * Metodo que hace la petición para conocer si el correo/usuario y contraseña ingresada se encuentran en la BD
+     * Si se encuentra lanzamos el mensaje para darle acceso
+     * Si no se encuentra lanzamos mensaje de error
+     */
     iniciarSesion = async () => {
         fetch("https://autenticacion-t.herokuapp.com/login/auth/user", {
             method: 'POST',
@@ -51,7 +61,10 @@ class Login extends React.Component {
             }
             console.log('Success:', response)});
     }
-
+    /**
+     * 
+     * @returns retornamos el formulario a renderizar
+     */
     render() {
 
         return (

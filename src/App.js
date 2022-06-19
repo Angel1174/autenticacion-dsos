@@ -5,7 +5,15 @@ import Login from './views/Login';
 import {HashRouter, Routes,Route} from "react-router-dom";
 import RegisterForm from './views/RegisterForm';
 import PeticionEmail from './views/PeticionEmail';
+import UpdateForm from './views/UpdateForm';
 function App() {
+  /**
+   * Esta sección nos sirve para poder tener las rutas a nuestras vistas
+   * Vistas: usuarios->sección del listado de la tabla con todos los usuarios
+   * registrar->sección para registrar a un nuevo usuario
+   * password->sección para solicitar recuperación de contraseña
+   * /->sección del login
+   */
   return (
     <div>
       <HashRouter basename={``}>
@@ -15,6 +23,8 @@ function App() {
           <Route  path="/registrar" element={<RegisterForm/>}>
           </Route>
           <Route  path="/password" element={<PeticionEmail />}>
+          </Route>
+          <Route  path="/editar" element={<UpdateForm />}>
           </Route>
           <Route exact path="/" element={<Login />}>
           </Route>

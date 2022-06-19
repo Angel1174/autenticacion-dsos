@@ -7,24 +7,23 @@ import formu from '../components/img/formu.png';
 import Message from '../components/Message';
 import { Link } from 'react-router-dom';
 const initialFom = {
-    email:"",
+    email: "",
 };
 const validationsForm = (form) => {
-    let errors={};
+    let errors = {};
     let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/; //correo electronico valido
-    if(!form.email.trim()){
-        errors.email="El campo email es requerido";
-    }else if(!regexEmail.test(form.email.trim())){
-        errors.email="El campo email es incorrecto";
+    if (!form.email.trim()) {
+        errors.email = "El campo email es requerido";
+    } else if (!regexEmail.test(form.email.trim())) {
+        errors.email = "El campo email es incorrecto";
     }
     return errors;
 };
-let styles={
-    fontWeight:"bold",
-    color:"#dc3545"
+let styles = {
+    fontWeight: "bold",
+    color: "#dc3545"
 }
 const PeticionEmail = () => {
-
     const {
         form,
         errors,
@@ -39,17 +38,17 @@ const PeticionEmail = () => {
             <div className="wrapper fadeInDown">
                 <div id="formContent">
                     <img src={formu} alt="" width="100px" />
-                    <form onSubmit={handleSubmitEmail}>               
+                    <form onSubmit={handleSubmitEmail}>
                         <input type="email" name="email" placeholder="Ingrese su correo" onBlur={handleBlur} onChange={handleChange} value={form.email} required></input>
-                        {errors.email && <p style={styles}>{errors.email}</p>} 
+                        {errors.email && <p style={styles}>{errors.email}</p>}
                         <input type="submit" value="Solicitar"></input>
                     </form>
                     <Link className="nav-link" to={"/"}><span className="material-icons">
-                            Regresar al Login
-                        </span></Link>
-                    {loading && <Loader/>}
+                        Regresar al Login
+                    </span></Link>
+                    {loading && <Loader />}
                     {response && (
-                        <Message msg="Petición enviada" bgColor="#198754"></Message>
+                        <Message msg="Petición enviada, revisa tu correo" bgColor="#198754"></Message>
                     )}
                 </div>
             </div>

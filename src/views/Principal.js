@@ -5,7 +5,7 @@ import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 import { Component } from 'react';
 import { NavbarComponent } from '../components/NavbarComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faEdit} from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 class Principal extends Component {
@@ -22,7 +22,10 @@ class Principal extends Component {
       tipoModal: ''
     }
   }
-
+  /**
+   * 
+   * @param {almacenamos lo que se escribe en los inputs} e 
+   */
   handleChange = async e => {
     e.persist();
     await this.setState({
@@ -33,10 +36,15 @@ class Principal extends Component {
     });
     //console.log(this.state.form);
   }
+  /**
+   * Esta función sirve para cerrar o abrir la ventana modal de editar usuario
+   */
   modalInsertar2 = () => {
     this.setState({ modalInsertar2: !this.state.modalInsertar2 });
   }
-
+  /**
+   * Petición para poder obtener los datos, requiere la url de la API a la que se hará la petición.
+   */
   peticionGet = () => {
     axios.get("https://autenticacion-t.herokuapp.com/login/admin/").then(
       response => {
@@ -45,17 +53,27 @@ class Principal extends Component {
         console.log(error.message);
       })
   }
-
+  /**
+   * Petición para poder modificar los datos, recibe la url de la API donde se hará la petición 
+   * Se concatena junto con el id que obtenemos de los datos del form
+   * Se le pasa como parámetros los datos ingresados en el input que se alojan en el form
+   */
   peticionPut = () => {
-    fetch('https://autenticacion-t.herokuapp.com/login/admin/' + this.state.form.id, {
-      method: 'PUT',
-      body: this.state.form
-    })
-      .then(response => response.json())
+    fetch("https://autenticacion-t.herokuapp.com/login/admin/" + this.state.form.id, {
+      method: 'PUT', 
+      body: JSON.stringify(this.state.form),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then(res => res.json())
       .catch(error => console.error('Error:', error))
-      .then(response => console.log('Success:', response))
+      .then(response => console.log('Success:', response));
   }
-
+  /**
+   * 
+   * @param {se envía el usuario, en la que se encuentran almacenados los datos} usuario
+   * obtenemos los datos en la fila en el que se hace click para editar el usuario 
+   */
   seleccionarUsuario = (usuario) => {
     this.setState({
       tipoModal: 'actualizar',
@@ -64,6 +82,7 @@ class Principal extends Component {
         nombre: usuario.nombre,
         username: usuario.username,
         email: usuario.email,
+        password: usuario.password,
         estado: usuario.estado
       }
     })
@@ -89,14 +108,18 @@ class Principal extends Component {
       
     }
     */
+
   //Ciclo de vida
   componentDidMount() {
     this.peticionGet();
   }
-
+  /**
+   * 
+   * @returns retornamos la tabla a renderizar
+   * Se crea el modal para poder editar los usuarios
+   */
   render() {
     const { form } = this.state;
-
     return (
       <div>
         <NavbarComponent></NavbarComponent>
@@ -125,7 +148,7 @@ class Principal extends Component {
                         <td align="center">{usuario.email}</td>
                         <td align="center">{usuario.estado}</td>
                         <td>
-                          <div className="btn-group btn-group-justified">
+                          <div className="btn-group">
                             <button type="button" className="btn btn-success" onClick={() => { this.seleccionarUsuario(usuario); this.modalInsertar2() }}><FontAwesomeIcon icon={faEdit}></FontAwesomeIcon></button>
                           </div>
                         </td>
@@ -147,6 +170,7 @@ class Principal extends Component {
               <input className="form-control" placeholder='Nombre' type="text" name="nombre" id="nombre" required onChange={this.handleChange} value={form ? form.nombre : ''} />
               <input className="form-control" placeholder='Usuario' type="text" name="username" id="alias" onChange={this.handleChange} value={form ? form.username : ''} />
               <input className="form-control" placeholder='Correo' type="text" name="email" id="email" disabled onChange={this.handleChange} value={form ? form.email : ''} />
+              <input className="form-control" placeholder='Password' type="password" name="password" id="password" onChange={this.handleChange} value={form ? form.password : ''} />
               <input className="form-control" placeholder='Status' type="status" name="estado" id="status" onChange={this.handleChange} value={form.estado} />
               <br></br>
               <button type="button" className="btn btn-outline-primary" onClick={() => this.peticionPut()}>Aplicar</button>&nbsp;&nbsp;&nbsp;
