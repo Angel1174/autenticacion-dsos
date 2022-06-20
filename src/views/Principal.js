@@ -5,7 +5,7 @@ import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 import { Component } from 'react';
 import { NavbarComponent } from '../components/NavbarComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit} from '@fortawesome/free-solid-svg-icons';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 class Principal extends Component {
@@ -59,15 +59,11 @@ class Principal extends Component {
    * Se le pasa como parámetros los datos ingresados en el input que se alojan en el form
    */
   peticionPut = () => {
-    fetch("https://autenticacion-t.herokuapp.com/login/admin/" + this.state.form.id, {
-      method: 'PUT', 
-      body: JSON.stringify(this.state.form),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    }).then(res => res.json())
-      .catch(error => console.error('Error:', error))
-      .then(response => console.log('Success:', response));
+    axios.put("https://autenticacion-t.herokuapp.com/login/admin/" + this.state.form.id, this.state.form).then(response => {
+      this.modalInsertar2();
+      window.alert('Usuario editado con éxito');
+      this.peticionGet();
+    })
   }
   /**
    * 

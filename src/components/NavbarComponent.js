@@ -11,7 +11,6 @@ export const NavbarComponent = (props = {}) => {
                     <div className="navbar-nav">
                         <Link className="nav-item nav-link" to={"/usuarios"}>Usuarios <span className="sr-only">(current)</span></Link>
                         <Link className="nav-item nav-link" to={"/registrar"}>Registro</Link>
-                        <Link className="nav-item nav-link" to={"/editar"}>Editar</Link>
                         <Link className="nav-item nav-link" to={"/"}>Salir</Link>
                     </div>
                 </div>
