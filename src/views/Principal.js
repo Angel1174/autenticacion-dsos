@@ -1,3 +1,6 @@
+/**
+ * Se importan los componentes necesarios para el sistema
+ */
 import '../css/App.css';
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,7 +14,7 @@ import { Link } from 'react-router-dom';
 class Principal extends Component {
   state = {
     data: [],
-    modalInsertar2: false,//editar
+    modalInsertar2: false,
     form: {
       id: '',
       nombre: '',
@@ -23,8 +26,8 @@ class Principal extends Component {
     }
   }
   /**
-   * 
-   * @param {almacenamos lo que se escribe en los inputs} e 
+   * Método para registrar lo que se escribe en los inputs del formulario
+   * @param {Se recibe el evento} e 
    */
   handleChange = async e => {
     e.persist();
@@ -46,7 +49,7 @@ class Principal extends Component {
    * Petición para poder obtener los datos, requiere la url de la API a la que se hará la petición.
    */
   peticionGet = () => {
-    axios.get("https://autenticacion-t.herokuapp.com/login/admin/").then(
+    axios.get("https://autenticacion-p.herokuapp.com/login/admin/").then(
       response => {
         this.setState({ data: response.data.data });
       }).catch(error => {
@@ -59,7 +62,8 @@ class Principal extends Component {
    * Se le pasa como parámetros los datos ingresados en el input que se alojan en el form
    */
   peticionPut = () => {
-    axios.put("https://autenticacion-t.herokuapp.com/login/admin/" + this.state.form.id, this.state.form).then(response => {
+    axios.put("https://autenticacion-p.herokuapp.com/login/admin/" + this.state.form.id, this.state.form)
+    .then(response => {
       this.modalInsertar2();
       window.alert('Usuario editado con éxito');
       this.peticionGet();
@@ -67,7 +71,7 @@ class Principal extends Component {
   }
   /**
    * 
-   * @param {se envía el usuario, en la que se encuentran almacenados los datos} usuario
+   * @param {Usuario, en la que se encuentran almacenados los datos} usuario
    * obtenemos los datos en la fila en el que se hace click para editar el usuario 
    */
   seleccionarUsuario = (usuario) => {

@@ -6,9 +6,15 @@ import Loader from '../components/Loader';
 import formu from '../components/img/formu.png';
 import Message from '../components/Message';
 import { Link } from 'react-router-dom';
+
 const initialFom = {
     email: "",
 };
+/**
+ * 
+ * @param {Recibe el formulario} form 
+ * @returns 
+ */
 const validationsForm = (form) => {
     let errors = {};
     let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/; //correo electronico valido

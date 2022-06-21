@@ -5,6 +5,7 @@ import '../css/App.css';
 import Loader from '../components/Loader';
 import formu from '../components/img/formu.png';
 import Message from '../components/Message';
+
 const initialFom = {
     nombre:"",
     username:"",
@@ -19,7 +20,7 @@ const initialFom = {
  */
 const validationsForm = (form) => {
     let errors={};
-    let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/; //Letras minusculas, vacias, espacios en blanco, acentos
+    let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/; //Letras minusculas, espacios en blanco, acentos
     let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/; //correo electronico valido
     let regexPassword = /^.{4,14}$/; //de 4 a 14 caracteres
     if(!form.nombre.trim()){
@@ -57,6 +58,10 @@ let styles={
     fontWeight:"bold",
     color:"#dc3545"
 }
+/**
+ * declaramos los metodos a utilizar
+ * @returns 
+ */
 const RegisterForm = () => {
 
     const {
@@ -68,6 +73,9 @@ const RegisterForm = () => {
         handleBlur,
         handleSubmit,
     } = useForm(initialFom, validationsForm);
+    /**
+     * Retornamos todo el contenido del formulario de registro de usuario
+     */
     return (
         <div><NavbarComponent></NavbarComponent>
             <div className="wrapper fadeInDown">

@@ -22,8 +22,8 @@ class Login extends React.Component {
         e.preventDefault();
     }
     /**
-     * 
-     * @param {Capturamos lo que se escribe en los campos del formulario} e 
+     * Método para el evento de capturar lo que se escribe por teclado
+     * @param {Evento} e 
      */
     handleChange = async e => {
         await this.setState({
@@ -40,7 +40,7 @@ class Login extends React.Component {
      * Si no se encuentra lanzamos mensaje de error
      */
     iniciarSesion = async () => {
-        fetch("https://autenticacion-t.herokuapp.com/login/auth/user", {
+        fetch("https://autenticacion-p.herokuapp.com/login/auth/user", {
             method: 'POST',
             body: JSON.stringify(this.state.form), 
             headers:{

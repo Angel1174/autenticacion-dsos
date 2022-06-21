@@ -1,7 +1,8 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from 'react-router-dom';
-export const NavbarComponent = (props = {}) => {
+import { Link} from 'react-router-dom';
+
+export const NavbarComponent = () => {
 
     return (
         <div>
